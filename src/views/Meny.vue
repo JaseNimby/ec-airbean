@@ -1,8 +1,8 @@
-<template><div>Om Oss</div></template>
+<template><div>Meny</div></template>
 
 <script>
 export default {
-  name: "About",
+  name: "Meny",
 };
 </script>
 

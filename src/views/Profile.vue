@@ -1,8 +1,8 @@
-<template><div>Om Oss</div></template>
+<template><div>Profile info</div></template>
 
 <script>
 export default {
-  name: "About",
+  name: "Profile",
 };
 </script>
 
