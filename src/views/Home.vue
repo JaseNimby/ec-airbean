@@ -18,15 +18,12 @@ export default {
 };
 </script>
 
-<style >
-body {
-  background-color: rgb(51, 160, 127);
-  margin: 0;
-}
-
+<style scoped>
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
+  background-color: rgb(51, 160, 127);
+  margin: 0;
 }
 .left {
   grid-column-start: 1;
