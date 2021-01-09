@@ -28,7 +28,7 @@ export default {
   height: 5%;
   position: relative;
   top: 5%;
-  left: 5%;
+  right: 45%;
   cursor: pointer;
   padding: 10px;
   text-decoration: none;

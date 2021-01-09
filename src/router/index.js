@@ -21,7 +21,13 @@ const routes = [
   {
     path: '/Nav',
     name: 'Nav',
-    component: () => import(/* webpackChunkName: "about" */ '../views/Nav.vue')
+    component: () => import(/* webpackChunkName: "nav" */ '../views/Nav.vue')
+
+  },
+  {
+    path: '/Meny',
+    name: 'Meny',
+    component: () => import(/* webpackChunkName: "meny" */ '../views/Meny.vue')
 
   },
 ]
