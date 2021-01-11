@@ -1,17 +1,20 @@
 <template>
   <div class="modal-backdrop">
     <div class="modal">
-      <TheOrder
-        v-for="item in this.$root.orderArray"
-        :key="item.id"
-        v-bind:cartItems="item"
-        v-on:plus="addToOrder(item)"
-        v-on:minus="minusOnOrder(item)"
-      />
-      <div class="total">
-        <h1>Total {{ total }} kr</h1>
+      <div class="wrapper">
+        <TheOrder
+          v-for="item in this.$root.orderArray"
+          :key="item.id"
+          v-bind:cartItems="item"
+          v-on:plus="addToOrder(item)"
+          v-on:minus="minusOnOrder(item)"
+        />
+        <div class="total">
+          <h1>Total {{ total }} kr</h1>
+          <p>inkl moms + drönarleverans</p>
+        </div>
+        <button @click="$emit(`createOrder`, total)">Take my money!</button>
       </div>
-      <button>Take my money!</button>
     </div>
   </div>
 </template>
@@ -28,33 +31,24 @@ export default {
 
   methods: {
     addToOrder(theCoffee) {
-      let clickedCoffee;
-      for (let element of this.$root.orderArray) {
-        if (element.title == theCoffee.title) {
-          clickedCoffee = element;
-          break;
-        }
-      }
+      let clickedCoffee = this.$root.orderArray.find(
+        (element) => element.title == theCoffee.title
+      );
       if (clickedCoffee) {
         clickedCoffee.amount += 1;
-        clickedCoffee.price += clickedCoffee.price;
+        clickedCoffee.price += theCoffee.price;
       }
-      this.amount += 1;
     },
 
     minusOnOrder(theCoffee) {
-      let clickedCoffee;
-      for (let element of this.$root.orderArray) {
-        if (element.title == theCoffee.title) {
-          clickedCoffee = element;
-          break;
-        }
-      }
+      let clickedCoffee = this.$root.orderArray.find(
+        (element) => element.title == theCoffee.title
+      );
+
       if (clickedCoffee) {
         clickedCoffee.amount -= 1;
-        clickedCoffee.price -= clickedCoffee.price;
+        clickedCoffee.price -= theCoffee.price;
       }
-      this.amount -= 1;
     },
   },
 };
@@ -77,12 +71,27 @@ export default {
 .modal {
   background: #ffffff;
   overflow-x: auto;
-  display: flex;
-  flex-direction: row;
+  width: 80%;
+  height: 80%;
 }
-/* .cart {
-  color: rgb(46, 42, 38);
-  display: grid;
-  grid-template-columns: 1fr 2fr 1fr;
-} */
+.wrapper {
+}
+
+.total {
+  justify-content: left;
+  align-items: left;
+}
+
+.total > p {
+  display: block;
+  margin-block-start: 0em;
+}
+
+h1 {
+  margin-block-end: 0em;
+}
+
+button {
+  margin-block-end: 1em;
+}
 </style>

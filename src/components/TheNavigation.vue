@@ -1,11 +1,12 @@
 <template>
   <section class="grid">
     <header class="close">
-      <img src="../assets/graphics/close.svg" @click="$router.push('/')" />
+      <img src="../assets/graphics/close.svg" @click="$emit(`visible`)" />
     </header>
     <div class="nav">
-      <router-link to="/Meny" class="link"> Meny</router-link><br />
-      <router-link to="/About" class="link"> Vårt Kaffe</router-link><br />
+      <router-link to="/Home" @click="$emit(`meny`)">Meny</router-link><br />
+      <router-link to="/Home" @click="$emit(`about`)">Vårt Kaffe</router-link
+      ><br />
       <router-link to="/Profil" class="link"> Min Profil</router-link><br />
       <router-link to="/OrderStatus" class="link"> Orderstatus</router-link>
     </div>
@@ -20,9 +21,13 @@ export default {
 
 <style scoped>
 .grid {
-  background-color: rgb(46, 42, 38);
   display: grid;
-  min-height: 1000px;
+  background-color: rgb(46, 42, 38);
+  height: 700px;
+  width: 400px;
+  position: absolute;
+  top: 0;
+  left: 0%;
 }
 .close {
   background-color: rgb(255, 252, 249);
@@ -45,15 +50,17 @@ export default {
   justify-content: center;
   align-items: center;
   flex-direction: row;
+  margin-left: 20px;
+  justify-content: space-between;
   font-size: 4rem;
 }
 
-.nav > .link {
+.nav > p {
   color: rgb(255, 252, 249);
   text-decoration: none;
 }
-
-.nav > br {
-  border-bottom: rgb(255, 252, 249);
+.nav > a {
+  color: rgb(255, 252, 249);
+  text-decoration: none;
 }
 </style> 

@@ -1,20 +1,45 @@
 <template>
   <div class="wrapper">
-    <img src="../assets/graphics/intro-graphic-left.svg" class="left" />
-    <div class="center">
-      <img
-        src="../assets/graphics/airbean-landing.svg"
-        class="logo"
-        @click="$router.push('nav')"
-      />
-    </div>
-    <img src="../assets/graphics/intro-graphic-right.svg" class="right" />
+    <TheHeader v-on:meny="show('meny')" v-on:about="show('about')" />
+
+    <About v-show="aboutVisible" />
+    <Meny v-show="menyVisible" />
+
+    <TheFooter />
   </div>
 </template>
 
 <script>
+import TheHeader from "@/components/TheHeader.vue";
+import TheFooter from "@/components/TheFooter.vue";
+
+import About from "./About.vue";
+import Meny from "./Meny.vue";
+
 export default {
+  components: { TheHeader, TheFooter, About, Meny },
   name: "Home",
+  data() {
+    return {
+      aboutVisible: true,
+      menyVisible: false,
+    };
+  },
+  methods: {
+    show(view) {
+      this.aboutVisible = false;
+      this.manyVisible = false;
+      switch (view) {
+        case "about":
+          this.aboutVisible = true;
+          break;
+
+        case "meny":
+          this.menyVisible = true;
+          break;
+      }
+    },
+  },
 };
 </script>
 
@@ -22,7 +47,11 @@ export default {
 .wrapper {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  background-color: rgb(51, 160, 127);
+  background-color: rgb(252, 239, 239);
+  color: rgb(46, 42, 38);
+  display: inline-block;
+  justify-content: center;
+  align-items: center;
   margin: 0;
 }
 .left {

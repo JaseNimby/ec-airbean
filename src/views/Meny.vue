@@ -1,7 +1,10 @@
 <template>
   <div>
-    <TheHeader v-bind:cartNumber="amount" />
-    <h1>Meny</h1>
+    <h1>Meny {{ this.$root.orderInfo }}</h1>
+    <div class="cart">
+      <img src="../assets/graphics/bag.svg" @click="cartVisability" />
+      <p>{{ amount }}</p>
+    </div>
 
     <TheMenu
       v-for="coffee in this.$root.coffeeMenu"
@@ -9,41 +12,39 @@
       v-bind:coffeeList="coffee"
       v-on:added="addToOrder(coffee)"
     />
-    <div class="cart" v-if="showCart">
-      <TheShoppingCart v-on:clickedCart="cartVisability" />
-    </div>
-    <TheFooter />
+    <TheShoppingCart v-if="showCart" />
+    <TheDelivery v-if="showDelivery" v-on:createOrder="createOrder" />
   </div>
 </template>
 
 <script>
-import TheHeader from "../components/TheHeader.vue";
 import TheMenu from "../components/TheMenu.vue";
 import TheShoppingCart from "../components/TheShoppingCart.vue";
-import TheFooter from "../components/TheFooter.vue";
+import TheDelivery from "../components/TheDelivery.vue";
 
 export default {
-  components: { TheHeader, TheFooter, TheMenu, TheShoppingCart },
+  components: {
+    TheMenu,
+    TheShoppingCart,
+    TheDelivery,
+  },
 
   data() {
     return {
       amount: 0,
-      showCart: true,
+      showCart: false,
+      showDelivery: false,
     };
   },
 
   methods: {
     addToOrder(theCoffee) {
-      let clickedCoffee;
-      for (let element of this.$root.orderArray) {
-        if (element.title == theCoffee.title) {
-          clickedCoffee = element;
-          break;
-        }
-      }
+      let clickedCoffee = this.$root.orderArray.find(
+        (element) => element.title == theCoffee.title
+      );
       if (clickedCoffee) {
         clickedCoffee.amount += 1;
-        clickedCoffee.price += clickedCoffee.price;
+        clickedCoffee.price += theCoffee.price;
       } else {
         this.$root.orderArray.push({
           title: theCoffee.title,
@@ -57,6 +58,11 @@ export default {
     cartVisability() {
       this.showCart = !this.showCart;
     },
+
+    createOrder() {
+      this.showDelivery = !this.showDelivery;
+      this.showCart = !this.showCart;
+    },
   },
 };
 </script>
@@ -64,5 +70,29 @@ export default {
 <style scoped>
 h1 {
   color: rgb(46, 42, 38);
+}
+
+.cart {
+  background-color: rgb(46, 42, 38);
+  width: 5%;
+  height: 5%;
+  position: relative;
+  top: 0%;
+  left: 40%;
+  cursor: pointer;
+  padding: 10px;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 50%;
+}
+
+p {
+  position: relative;
+  top: 1%;
+  left: 45%;
+  font-size: 30px;
+  color: rgb(199, 143, 117);
 }
 </style>

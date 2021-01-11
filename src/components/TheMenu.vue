@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="">
     <li class="meny">
       <div class="col1">
         <button @click="$emit(`added`)">+</button>

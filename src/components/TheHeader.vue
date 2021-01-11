@@ -1,21 +1,33 @@
 <template>
   <section class="background">
     <div class="nav">
-      <img src="../assets/graphics/navicon.svg" />
+      <img src="../assets/graphics/navicon.svg" @click="$emit(`visible`)" />
+      <TheNavigation
+        v-if="showNav"
+        v-on:visible="visible"
+        v-on:meny="$emit(`meny`)"
+        v-on:about="$emit(`about`)"
+      />
     </div>
-
-    <div class="cart">
-      <img src="../assets/graphics/bag.svg" @click="$emit(`clickedCart`)" />
-    </div>
-    <p>{{ cartNumber }}</p>
   </section>
 </template>
 
 <script>
+import TheNavigation from "../components/TheNavigation.vue";
+
 export default {
   name: "Header",
-
-  props: { cartNumber: Number },
+  components: { TheNavigation },
+  data() {
+    return {
+      showNav: true,
+    };
+  },
+  methods: {
+    visible() {
+      this.showNav = !this.showNav;
+    },
+  },
 };
 </script>
 
@@ -34,8 +46,8 @@ export default {
   width: 5%;
   height: 5%;
   position: relative;
-  top: 5%;
-  right: 40%;
+  top: 50%;
+  left: 5%;
   cursor: pointer;
   padding: 10px;
   text-decoration: none;
@@ -43,28 +55,5 @@ export default {
   font-size: 16px;
   margin: 4px 2px;
   border-radius: 50%;
-}
-.cart {
-  background-color: rgb(104, 72, 40);
-  width: 5%;
-  height: 5%;
-  position: relative;
-  top: 5%;
-  left: 40%;
-  cursor: pointer;
-  padding: 10px;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  border-radius: 50%;
-}
-
-p {
-  position: relative;
-  top: 100%;
-  left: 45%;
-  font-size: 30px;
-  color: rgb(185, 66, 10);
 }
 </style>

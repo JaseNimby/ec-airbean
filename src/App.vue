@@ -12,15 +12,22 @@ export default {
 
 <style lang="scss">
 body {
-  margin: 0;
+  background: lavender;
+}
+
+html,
+body {
+  height: calc(100% - 50&);
 }
 #app {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin: 0;
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  margin: 50px auto 0 auto;
+  height: calc(60% - 50%);
 }
 
 #nav {
