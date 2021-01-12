@@ -11,7 +11,7 @@
         Epost
         <input type="text" placeholder="name@mail.com" v-model="mail" />
         <input type="radio" value="GDPR ok!" v-model="gdpr" />
-        <button @click="createProfile(mail)">Take my personal info!</button>
+        <button @click="createProfile(mail)">Take my personal data!</button>
       </section>
     </div>
   </div>
@@ -24,24 +24,22 @@ export default {
     return {
       name: "",
       mail: "",
-      gdpr: false,
+      gdpr: null,
     };
   },
 
   methods: {
     createProfile(mail) {
-      let email = this.$root.profileInfo.find(
-        (element) => element.mail == mail.mail
-      );
+      let email = this.$root.users.find((element) => element.mail == mail.mail);
       if (email) {
-        this.$root.profileInfo.push({
-          orderId: 45,
+        this.$root.users.push({
+          orderId: Date.now(),
         });
       } else {
-        this.$root.profileInfo.push({
+        this.$root.users.push({
           name: this.name,
           mail: this.mail,
-          orderId: 40,
+          orderId: Date.now(),
         });
       }
       this.$emit("close");

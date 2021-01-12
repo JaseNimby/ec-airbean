@@ -1,27 +1,41 @@
 <template>
   <div>
     <TheRegister v-on:close="visibleModal" v-if="visible" />
-    <TheDelivery v-if="showDelivery" />
+    <TheDelivery v-on:close="visibleModal" v-if="showDelivery" />
+    <TheLoader v-model="loading" v-if="loading" />
+    {{ users }}
   </div>
 </template>
 
 <script>
 import TheRegister from "@/components/TheRegister.vue";
 import TheDelivery from "@/components/TheDelivery.vue";
+import TheLoader from "@/components/TheLoader.vue";
+import * as API from "@/api";
 
 export default {
   name: "profile",
-  components: { TheRegister, TheDelivery },
+  components: { TheRegister, TheDelivery, TheLoader },
   data() {
     return {
       visible: true,
       showDelivery: false,
+      loading: true,
+      users: [],
     };
   },
+
   methods: {
     visibleModal() {
       this.showDelivery = !this.showDelivery;
+      this.visible = false;
     },
+  },
+
+  async mounted() {
+    const users = await API.fetchUsers();
+    this.users = users;
+    this.loading = false;
   },
 };
 </script>

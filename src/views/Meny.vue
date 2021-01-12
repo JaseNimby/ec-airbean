@@ -12,21 +12,18 @@
       v-bind:coffeeList="coffee"
       v-on:added="addToOrder(coffee)"
     />
-    <TheShoppingCart v-if="showCart" v-on:createOrder="createOrder" />
-    <TheFooter />
+    <TheShoppingCart v-if="showCart" />
   </div>
 </template>
 
 <script>
 import TheMenu from "../components/TheMenu.vue";
 import TheShoppingCart from "../components/TheShoppingCart.vue";
-import TheFooter from "@/components/TheFooter.vue";
 
 export default {
   components: {
     TheMenu,
     TheShoppingCart,
-    TheFooter,
   },
 
   data() {
@@ -56,15 +53,6 @@ export default {
 
     cartVisability() {
       this.showCart = !this.showCart;
-    },
-
-    createOrder() {
-      // this.showCart = !this.showCart;
-      this.$root.profileInfo.push({
-        orderId: Date.now(),
-        name: "Lucy Elfman",
-      });
-      this.$router.push("/Profile");
     },
   },
 };

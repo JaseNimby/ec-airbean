@@ -13,7 +13,7 @@
           <h1>Total {{ total }} kr</h1>
           <p>inkl moms + drönarleverans</p>
         </div>
-        <button @click="$emit(`createOrder`, total)">Take my money!</button>
+        <router-link to="/profile"><button>Take my money!</button></router-link>
       </div>
     </div>
   </div>

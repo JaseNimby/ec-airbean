@@ -30,16 +30,12 @@
       <h1>Eva Cortado</h1>
       <p>VD & Grundare</p>
     </div>
-    <TheFooter />
   </div>
 </template>
 
 <script>
-import TheFooter from "@/components/TheFooter.vue";
-
 export default {
   name: "About",
-  componenets: { TheFooter },
 };
 </script>
 

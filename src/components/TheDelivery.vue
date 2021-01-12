@@ -29,7 +29,7 @@ export default {
             this.timerCount--;
           }, 1000);
         } else {
-          this.$router.push("/Profile");
+          this.$emit("close");
         }
       },
       immediate: true,
@@ -65,7 +65,6 @@ export default {
 .modal {
   background-color: rgb(235, 119, 84);
   color: rgb(250, 245, 239);
-
   overflow-x: auto;
   width: 80%;
   height: 80%;
