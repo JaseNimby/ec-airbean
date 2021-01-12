@@ -1,7 +1,7 @@
 <template>
   <li class="cart">
     <h2>{{ cartItems.title }}</h2>
-    <p>{{ cartItems.price }} kr</p>
+    <p>{{ cartItems.price * cartItems.amount }} kr</p>
     <aside class="col3">
       <img src="../assets/graphics/arrow-up.svg" @click="$emit(`plus`)" />
       {{ cartItems.amount }}

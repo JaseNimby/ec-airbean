@@ -10,6 +10,7 @@ new Vue({
     return {
       coffeeMenu: menu.menu,
       orderArray: [],
+      profileInfo: [{ orderId: 3957, mail: "alice@wonderland.com", total: 54, date: 2002 }]
     }
   },
   router,

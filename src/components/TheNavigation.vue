@@ -4,10 +4,9 @@
       <img src="../assets/graphics/close.svg" @click="$emit(`visible`)" />
     </header>
     <div class="nav">
-      <router-link to="/Home" @click="$emit(`meny`)">Meny</router-link><br />
-      <router-link to="/Home" @click="$emit(`about`)">Vårt Kaffe</router-link
-      ><br />
-      <router-link to="/Profil" class="link"> Min Profil</router-link><br />
+      <router-link to="/Meny">Meny</router-link><br />
+      <router-link to="/About">Vårt Kaffe</router-link><br />
+      <router-link to="/Profile" class="link"> Min Profil</router-link><br />
       <router-link to="/OrderStatus" class="link"> Orderstatus</router-link>
     </div>
   </section>
@@ -28,6 +27,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0%;
+  border-radius: 5px;
 }
 .close {
   background-color: rgb(255, 252, 249);

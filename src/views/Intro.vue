@@ -5,7 +5,7 @@
       <img
         src="../assets/graphics/airbean-landing.svg"
         class="logo"
-        @click="$router.push('home')"
+        @click="$router.push('/Meny')"
       />
     </div>
     <img src="../assets/graphics/intro-graphic-right.svg" class="right" />

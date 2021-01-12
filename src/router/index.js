@@ -1,15 +1,10 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/Home',
-    name: 'Home',
-    component: Home
-  },
+
   {
     path: '/about',
     name: 'About',
@@ -23,6 +18,12 @@ const routes = [
     path: '/Meny',
     name: 'Meny',
     component: () => import(/* webpackChunkName: "meny" */ '../views/Meny.vue')
+
+  },
+  {
+    path: '/Profile',
+    name: 'Profile',
+    component: () => import(/* webpackChunkName: "meny" */ '../views/Profile.vue')
 
   },
 

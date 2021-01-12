@@ -36,7 +36,6 @@ export default {
       );
       if (clickedCoffee) {
         clickedCoffee.amount += 1;
-        clickedCoffee.price += theCoffee.price;
       }
     },
 
@@ -47,7 +46,6 @@ export default {
 
       if (clickedCoffee) {
         clickedCoffee.amount -= 1;
-        clickedCoffee.price -= theCoffee.price;
       }
     },
   },
@@ -73,6 +71,7 @@ export default {
   overflow-x: auto;
   width: 80%;
   height: 80%;
+  border-radius: 5px;
 }
 .wrapper {
 }

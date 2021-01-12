@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>Meny {{ this.$root.orderInfo }}</h1>
+    <h1>Meny</h1>
     <div class="cart">
       <img src="../assets/graphics/bag.svg" @click="cartVisability" />
       <p>{{ amount }}</p>
@@ -12,28 +12,27 @@
       v-bind:coffeeList="coffee"
       v-on:added="addToOrder(coffee)"
     />
-    <TheShoppingCart v-if="showCart" />
-    <TheDelivery v-if="showDelivery" v-on:createOrder="createOrder" />
+    <TheShoppingCart v-if="showCart" v-on:createOrder="createOrder" />
+    <TheFooter />
   </div>
 </template>
 
 <script>
 import TheMenu from "../components/TheMenu.vue";
 import TheShoppingCart from "../components/TheShoppingCart.vue";
-import TheDelivery from "../components/TheDelivery.vue";
+import TheFooter from "@/components/TheFooter.vue";
 
 export default {
   components: {
     TheMenu,
     TheShoppingCart,
-    TheDelivery,
+    TheFooter,
   },
 
   data() {
     return {
       amount: 0,
       showCart: false,
-      showDelivery: false,
     };
   },
 
@@ -60,8 +59,12 @@ export default {
     },
 
     createOrder() {
-      this.showDelivery = !this.showDelivery;
-      this.showCart = !this.showCart;
+      // this.showCart = !this.showCart;
+      this.$root.profileInfo.push({
+        orderId: Date.now(),
+        name: "Lucy Elfman",
+      });
+      this.$router.push("/Profile");
     },
   },
 };

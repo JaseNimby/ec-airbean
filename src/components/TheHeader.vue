@@ -1,7 +1,7 @@
 <template>
   <section class="background">
     <div class="nav">
-      <img src="../assets/graphics/navicon.svg" @click="$emit(`visible`)" />
+      <img src="../assets/graphics/navicon.svg" @click="visible" />
       <TheNavigation
         v-if="showNav"
         v-on:visible="visible"
@@ -20,7 +20,7 @@ export default {
   components: { TheNavigation },
   data() {
     return {
-      showNav: true,
+      showNav: false,
     };
   },
   methods: {
