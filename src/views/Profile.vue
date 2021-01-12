@@ -1,9 +1,13 @@
 <template>
   <div>
-    <TheRegister v-on:close="visibleModal" v-if="visible" />
+    <TheRegister
+      v-on:close="visibleModal"
+      v-if="visible"
+      v-on:tracked="tracker"
+    />
     <TheDelivery v-on:close="visibleModal" v-if="showDelivery" />
     <TheLoader v-model="loading" v-if="loading" />
-    {{ users }}
+    {{ users }} {{ eta }} {{ orderId }}
   </div>
 </template>
 
@@ -22,6 +26,8 @@ export default {
       showDelivery: false,
       loading: true,
       users: [],
+      orderId: "",
+      eta: 0,
     };
   },
 
@@ -29,6 +35,10 @@ export default {
     visibleModal() {
       this.showDelivery = !this.showDelivery;
       this.visible = false;
+    },
+
+    tracker(range) {
+      console.log(range.orderId, range.eta);
     },
   },
 
