@@ -24,6 +24,9 @@ import TheOrder from "../components/TheOrder.vue";
 export default {
   components: { TheOrder },
   computed: {
+    order() {
+      return this.$root.orderArray;
+    },
     total() {
       return this.$root.orderArray.reduce((acc, item) => acc + item.price, 0);
     },

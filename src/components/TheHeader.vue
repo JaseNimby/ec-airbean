@@ -1,5 +1,5 @@
 <template>
-  <section class="background">
+  <section class="background rounded-top">
     <div class="nav">
       <img src="../assets/graphics/navicon.svg" @click="visible" />
       <TheNavigation

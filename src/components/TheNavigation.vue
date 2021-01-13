@@ -6,8 +6,8 @@
     <div class="nav">
       <router-link to="/Meny">Meny</router-link><br />
       <router-link to="/About">Vårt Kaffe</router-link><br />
-      <router-link to="/Profile" class="link"> Min Profil</router-link><br />
-      <router-link to="/OrderStatus" class="link"> Orderstatus</router-link>
+      <router-link class="link"> Min Profil</router-link><br />
+      <router-link class="link"> Orderstatus</router-link>
     </div>
   </section>
 </template>

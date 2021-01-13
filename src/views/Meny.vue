@@ -74,16 +74,16 @@ h1 {
   padding: 10px;
   text-decoration: none;
   display: inline-block;
-  font-size: 16px;
   margin: 4px 2px;
-  border-radius: 50%;
+  border-radius: 100%;
+  margin-top: 50px;
 }
 
 p {
-  position: relative;
+  position: absolute;
   top: 1%;
   left: 45%;
   font-size: 30px;
-  color: rgb(199, 143, 117);
+  color: rgb(235, 119, 84);
 }
 </style>

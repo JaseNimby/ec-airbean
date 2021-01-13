@@ -11,15 +11,15 @@
         Epost
         <input type="text" placeholder="name@mail.com" v-model="mail" />
         <input type="radio" value="GDPR ok!" v-model="gdpr" />
-        <button @click="createHistory">Take my personal data!</button>
+        <button class="btn" @click="$emit('tracker')">
+          Take my personal data!
+        </button>
       </section>
     </div>
   </div>
 </template>
 
 <script>
-import { generateOrderNr, generateETA } from "@/assets/backend/utils/utils.js";
-
 export default {
   name: "register",
   data() {
@@ -28,15 +28,6 @@ export default {
       mail: "",
       gdpr: false,
     };
-  },
-
-  methods: {
-    createHistory() {
-      let orderNr = generateOrderNr();
-      let eta = generateETA();
-      this.$emit("tracked", orderNr, eta);
-      this.$emit("close");
-    },
   },
 };
 </script>

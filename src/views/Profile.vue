@@ -1,44 +1,41 @@
 <template>
   <div>
-    <TheRegister
-      v-on:close="visibleModal"
-      v-if="visible"
-      v-on:tracked="tracker"
-    />
-    <TheDelivery v-on:close="visibleModal" v-if="showDelivery" />
+    <TheRegister v-if="visible" v-on:tracker="tracker" />
+    <div class="wrapper">
+      <p>{{ orderNr }}</p>
+      <img src="../assets/graphics/drone.svg" alt="" />
+      <h1>Din beställning är på väg!</h1>
+      <div>{{ eta }} minuter</div>
+    </div>
+
     <TheLoader v-model="loading" v-if="loading" />
-    {{ users }} {{ eta }} {{ orderId }}
   </div>
 </template>
 
 <script>
 import TheRegister from "@/components/TheRegister.vue";
-import TheDelivery from "@/components/TheDelivery.vue";
 import TheLoader from "@/components/TheLoader.vue";
 import * as API from "@/api";
+import { generateOrderNr, generateETA } from "@/assets/backend/utils/utils.js";
 
 export default {
   name: "profile",
-  components: { TheRegister, TheDelivery, TheLoader },
+  components: { TheRegister, TheLoader },
   data() {
     return {
       visible: true,
-      showDelivery: false,
       loading: true,
       users: [],
-      orderId: "",
+      orderNr: "",
       eta: 0,
     };
   },
 
   methods: {
-    visibleModal() {
-      this.showDelivery = !this.showDelivery;
+    tracker() {
+      this.orderNr = generateOrderNr();
+      this.eta = generateETA();
       this.visible = false;
-    },
-
-    tracker(range) {
-      console.log(range.orderId, range.eta);
     },
   },
 
@@ -51,14 +48,7 @@ export default {
 </script>
 
 <style scoped>
-body {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  color: rgb(252, 239, 239);
-  background-color: rgb(46, 42, 38);
-  display: inline-block;
-  justify-content: center;
-  align-items: center;
-  margin: 0;
+.wrapper {
+  background-color: rgb(235, 119, 84);
 }
 </style>
