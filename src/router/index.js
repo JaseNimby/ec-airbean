@@ -6,6 +6,13 @@ Vue.use(VueRouter)
 const routes = [
 
   {
+
+    path: '/',
+    name: 'Meny',
+    component: () => import(/* webpackChunkName: "meny" */ '../views/Meny.vue')
+
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
@@ -15,24 +22,13 @@ const routes = [
   },
 
   {
-    path: '/Meny',
-    name: 'Meny',
-    component: () => import(/* webpackChunkName: "meny" */ '../views/Meny.vue')
-
-  },
-  {
     path: '/Profile',
     name: 'Profile',
     component: () => import(/* webpackChunkName: "meny" */ '../views/Profile.vue')
 
   },
 
-  {
-    path: '/',
-    name: 'Intro',
-    component: () => import(/* webpackChunkName: "meny" */ '../views/Intro.vue')
 
-  },
 
 ]
 

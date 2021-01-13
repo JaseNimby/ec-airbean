@@ -11,6 +11,7 @@
         Epost
         <input type="text" placeholder="name@mail.com" v-model="mail" />
         <input type="radio" value="GDPR ok!" v-model="gdpr" />
+        Gdpr
         <button class="btn" @click="$emit('tracker')">
           Take my personal data!
         </button>

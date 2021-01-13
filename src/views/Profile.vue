@@ -1,14 +1,16 @@
 <template>
-  <div>
+  <div class="wrapper">
     <TheRegister v-if="visible" v-on:tracker="tracker" />
-    <div class="wrapper">
-      <p>{{ orderNr }}</p>
+    <div class="drone">
+      <p>Ordernummer: {{ orderNr }}</p>
       <img src="../assets/graphics/drone.svg" alt="" />
       <h1>Din beställning är på väg!</h1>
       <div>{{ eta }} minuter</div>
     </div>
+    <router-link to="/"><button>Brew me more...</button></router-link>
 
-    <TheLoader v-model="loading" v-if="loading" />
+    <TheLoader v-if="loading" />
+    <div class="timer">{{ timerCount }}</div>
   </div>
 </template>
 
@@ -28,6 +30,7 @@ export default {
       users: [],
       orderNr: "",
       eta: 0,
+      timerCount: 2,
     };
   },
 
@@ -39,10 +42,29 @@ export default {
     },
   },
 
+  watch: {
+    timerCount: {
+      handler(value) {
+        if (value > 0) {
+          setTimeout(() => {
+            this.timerCount--;
+          }, 1000);
+        } else {
+          this.loading = false;
+        }
+      },
+      immediate: true,
+    },
+  },
+
   async mounted() {
     const users = await API.fetchUsers();
     this.users = users;
-    this.loading = false;
+    // this.loading = false;
+
+    // jag har vilat den här raden så du ser att den
+    // ska vara här om jag hade haft ett riktigt API,
+    // fejkar en loading med watcher-koden ovan istl
   },
 };
 </script>
@@ -50,5 +72,27 @@ export default {
 <style scoped>
 .wrapper {
   background-color: rgb(235, 119, 84);
+  margin: 0;
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+}
+
+.drone {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: whitesmoke;
+}
+
+.drone > div {
+  font-weight: bold;
+}
+
+.timer {
+  color: rgb(235, 119, 84);
 }
 </style>

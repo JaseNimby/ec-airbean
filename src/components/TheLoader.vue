@@ -38,6 +38,8 @@ export default {
 }
 
 .wrapper {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>

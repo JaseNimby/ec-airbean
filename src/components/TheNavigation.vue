@@ -4,10 +4,10 @@
       <img src="../assets/graphics/close.svg" @click="$emit(`visible`)" />
     </header>
     <div class="nav">
-      <router-link to="/Meny">Meny</router-link><br />
+      <router-link to="/">Meny</router-link><br />
       <router-link to="/About">Vårt Kaffe</router-link><br />
-      <router-link class="link"> Min Profil</router-link><br />
-      <router-link class="link"> Orderstatus</router-link>
+      <router-link to="*" class="link"> Min Profil</router-link><br />
+      <router-link to="*" class="link"> Orderstatus</router-link>
     </div>
   </section>
 </template>
@@ -55,12 +55,11 @@ export default {
   font-size: 4rem;
 }
 
-.nav > p {
-  color: rgb(255, 252, 249);
-  text-decoration: none;
-}
 .nav > a {
   color: rgb(255, 252, 249);
   text-decoration: none;
+}
+
+.link {
 }
 </style> 

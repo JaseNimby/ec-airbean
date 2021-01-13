@@ -1,14 +1,36 @@
 <template>
   <div class="modal-backdrop">
     <div class="modal">
+      <header><h1>Din beställning</h1></header>
       <div class="wrapper">
-        <TheOrder
+        <li
+          class="cart"
           v-for="item in this.$root.orderArray"
           :key="item.id"
           v-bind:cartItems="item"
           v-on:plus="addToOrder(item)"
           v-on:minus="minusOnOrder(item)"
-        />
+        >
+          <h2>{{ item.title }}</h2>
+
+          <aside>
+            <div class="add">
+              <img
+                src="../assets/graphics/arrow-up.svg"
+                @click="addToOrder(item)"
+              />
+            </div>
+            {{ item.amount }}
+            <div class="less">
+              <img
+                src="../assets/graphics/arrow-down.svg"
+                @click="minusOnOrder(item)"
+              />
+            </div>
+          </aside>
+
+          <p>{{ item.price * item.amount }} kr</p>
+        </li>
         <div class="total">
           <h1>Total {{ total }} kr</h1>
           <p>inkl moms + drönarleverans</p>
@@ -20,13 +42,8 @@
 </template>
 
 <script>
-import TheOrder from "../components/TheOrder.vue";
 export default {
-  components: { TheOrder },
   computed: {
-    order() {
-      return this.$root.orderArray;
-    },
     total() {
       return this.$root.orderArray.reduce((acc, item) => acc + item.price, 0);
     },
@@ -39,6 +56,7 @@ export default {
       );
       if (clickedCoffee) {
         clickedCoffee.amount += 1;
+        clickedCoffee.price += theCoffee.price;
       }
     },
 
@@ -49,6 +67,7 @@ export default {
 
       if (clickedCoffee) {
         clickedCoffee.amount -= 1;
+        clickedCoffee.price -= theCoffee.price;
       }
     },
   },
@@ -72,28 +91,38 @@ export default {
 .modal {
   background: #ffffff;
   overflow-x: auto;
-  width: 80%;
+  width: 60%;
   height: 80%;
   border-radius: 5px;
 }
-.wrapper {
-}
 
-.total {
-  justify-content: left;
-  align-items: left;
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.wrapper {
+  margin-left: 20px;
 }
 
 .total > p {
   display: block;
   margin-block-start: 0em;
 }
-
-h1 {
-  margin-block-end: 0em;
+li {
+  list-style: none;
 }
 
+aside {
+  margin-left: 20px;
+}
+
+img {
+  cursor: pointer;
+}
 button {
-  margin-block-end: 1em;
+  font-size: medium;
+  padding: 0.5rem;
+  width: 40%;
 }
 </style>

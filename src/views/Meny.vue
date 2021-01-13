@@ -1,10 +1,13 @@
 <template>
   <div>
-    <h1>Meny</h1>
+    <TheIntro v-if="show" @click="show = false" />
+
     <div class="cart">
       <img src="../assets/graphics/bag.svg" @click="cartVisability" />
       <p>{{ amount }}</p>
     </div>
+
+    <h1>Meny</h1>
 
     <TheMenu
       v-for="coffee in this.$root.coffeeMenu"
@@ -17,6 +20,7 @@
 </template>
 
 <script>
+import TheIntro from "@/components/TheIntro";
 import TheMenu from "../components/TheMenu.vue";
 import TheShoppingCart from "../components/TheShoppingCart.vue";
 
@@ -24,12 +28,14 @@ export default {
   components: {
     TheMenu,
     TheShoppingCart,
+    TheIntro,
   },
 
   data() {
     return {
       amount: 0,
       showCart: false,
+      show: true,
     };
   },
 
@@ -54,6 +60,10 @@ export default {
     cartVisability() {
       this.showCart = !this.showCart;
     },
+
+    async mounted() {
+      this.show = true;
+    },
   },
 };
 </script>
@@ -61,29 +71,32 @@ export default {
 <style scoped>
 h1 {
   color: rgb(46, 42, 38);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cart {
   background-color: rgb(46, 42, 38);
   width: 5%;
   height: 5%;
-  position: relative;
-  top: 0%;
-  left: 40%;
+  position: absolute;
+  left: 87%;
+  top: 3%;
   cursor: pointer;
-  padding: 10px;
-  text-decoration: none;
-  display: inline-block;
-  margin: 4px 2px;
+  padding: 15px;
   border-radius: 100%;
-  margin-top: 50px;
 }
 
 p {
   position: absolute;
-  top: 1%;
-  left: 45%;
-  font-size: 30px;
-  color: rgb(235, 119, 84);
+  top: 0%;
+  left: 57%;
+  font-size: 20px;
+  background-color: rgb(235, 119, 84);
+  color: powderblue;
+  padding: 5px;
+  border-radius: 100%;
+  margin: 0;
 }
 </style>
